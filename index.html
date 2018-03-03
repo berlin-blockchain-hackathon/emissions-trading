@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<script src="node_modules/web3/dist/web3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script>
+	if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
+        }
+		
+		
+		
+		web3.eth.defaultAccount = web3.eth.accounts[0];
+		
+		var SimpleAuction = web3.eth.contract(
+			[
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "creator",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "a",
+				"type": "address"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "allowance",
+				"type": "uint256"
+			}
+		],
+		"name": "registerFirm",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "firms",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "allowance",
+				"type": "uint256"
+			},
+			{
+				"name": "balance",
+				"type": "uint256"
+			},
+			{
+				"name": "used",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "buyCheapCredits",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "defaultFirm",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "buyExpensiveCredits",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "a",
+				"type": "address"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "setUsed",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "firm",
+				"type": "address"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferCredits",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]//Add Contract ABI here//);
+		var AuctionContract = SimpleAuction.at('0x8cdaf0cd259887258bc13a92c0a6da92698644c0');
+			//ADD Contract address here//');
+	
+	</script>
+  
+   <picture style="position:absolute;left:200px"> 
+   <img src="Background.png" alt="Model">
+   </picture>
+	
+	<div>
+		<strong>Smart Contract</strong>
+		<div>Cheap price: </div>
+		<div>Expensive price: </div>
+		<div>Credits in circulation: </div>
+		<div>Return price: </div>
+   </div>
+	<br>
+	<div>
+		<strong>Company 1</strong>
+		<div>Allowed: 100</div>
+		<div>Credits:</div>
+   </div>
+	<br>
+	<div>
+		<strong>Company 2</strong>
+		<div>Allowed: 100</div>
+		<div>Credits:</div>
+   </div>
+	<br>
+	<div>
+		<strong>Renewable Energy</strong>
+		<div>Money: </div>
+		<div>Credits: </div>
+   </div>
+	<br>
+	<div>
+		<strong>Regulator</strong>
+		<div>Allowed: 100</div>
+		<div>Credits:</div>
+   </div>
+	<br>
+	
+<div style="position:absolute;left:80%;top:1%">
+	<div><strong>Regulator</strong></div>
+	<button id="setCheapPrice" type="button">Set Cheap Price:</button>
+	$("#setCheapPrice").click(function(){
+	Coursetro.setCheapPrice();
+});
+	<button type="button">Set Expensive Price:</button>
+	<br>
+	<button type="button">Set Allowances</button>
+	<br>
+	<button type="button">Burn Token</button>
+	<br>
+	<button type="button">Transfer Token</button>
+	
+	<br>
+	<div><strong>Firm</strong></div>
+	<button type="button">Buy Token</button><br>
+	<button type="button">Transfer Token</button>
+	
+	<br>
+	<div><strong>Renewable Energy</strong></div>
+	<button type="button">Return Credits</button>
+
+	</div>
+  
+	
+</body>
+</html>
