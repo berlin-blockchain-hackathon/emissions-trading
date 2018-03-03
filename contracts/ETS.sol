@@ -2,24 +2,22 @@ pragma solidity ^0.4.17;
 
 contract ETS {
     struct Firm {
-        bytes32 name;
+        string name;
         uint allowance;
         uint balance;
         uint used;
     }
 
     mapping (address => Firm) public firms;
-    mapping (bytes32 => address) public names;
 
     address public creator;
 
     uint expensivePrice = 10;
     uint cheapPrice = 2;
 
-    function registerFirm(address a, bytes32 name, uint allowance) public {
+    function registerFirm(address a, string name, uint allowance) public {
         require(creator == msg.sender);
         firms[a] = Firm(name, allowance, 0, 0);
-        names[name] = a;
     }
 
     function ETS() public {
@@ -34,7 +32,7 @@ contract ETS {
     // should we check that they only buy if used > allowance?
     function buyCheapCredits() payable public {
         // TODO: Is there a better way to check for presence in mapping?
-        require(firms[msg.sender].name != 0);
+        require(keccak256(firms[msg.sender].name) != 0);
         
         require(msg.value <=(firms[msg.sender].allowance-firms[msg.sender].used)*cheapPrice);
         
@@ -44,7 +42,7 @@ contract ETS {
 
     function buyExpensiveCredits() payable public {
         // TODO: Is there a better way to check for presence in mapping?
-        require(firms[msg.sender].name != 0);
+        require(keccak256(firms[msg.sender].name) != 0);
 
         // require(msg.value <=(firms[msg.sender].allowance-firms[msg.sender].used)*expensivePrice);
 
