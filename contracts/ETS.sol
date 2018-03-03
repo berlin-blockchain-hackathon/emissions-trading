@@ -56,4 +56,10 @@ contract ETS {
     function defaultFirm() public {
         firms[msg.sender] = Firm("foo", 100, 0, 0);
     }
+
+    function transferCredits(address firm, uint amount) public {
+        require(firms[msg.sender].balance >= amount);
+        firms[msg.sender].balance -= amount;
+        firms[firm].balance += amount;
+    }
 }
