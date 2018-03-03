@@ -12,8 +12,8 @@ contract ETS {
 
     address public creator;
 
-    uint expensivePrice = 10;
-    uint cheapPrice = 2;
+    uint public expensivePrice = 10;
+    uint public cheapPrice = 2;
 
     event CheapCreditsBought(address buyer, uint amount);
     event ExpensiveCreditsBought(address buyer, uint amount);
