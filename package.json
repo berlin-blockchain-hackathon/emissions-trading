@@ -10,8 +10,7 @@
     "browserify": "^16.1.0",
     "ganache-cli": "^6.0.3",
     "mocha": "^5.0.1",
-    "solc": "^0.4.20",
-    "web3": "^1.0.0-beta.30"
+    "solc": "^0.4.20"
   },
   "scripts": {
     "test": "mocha"
