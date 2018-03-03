@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<script src="node_modules/web3/dist/web3.min.js"></script>
+	<script src="assets/index.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script>
 	if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
         } else {
             // set the provider you want from Web3.providers
-            web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
         }
-		
-		
-		
 		web3.eth.defaultAccount = web3.eth.accounts[0];
 		
 		var SimpleAuction = web3.eth.contract(
@@ -153,7 +150,8 @@
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	}
-]//Add Contract ABI here//);
+]);
+  //Add Contract ABI here//);
 		var AuctionContract = SimpleAuction.at('0x8cdaf0cd259887258bc13a92c0a6da92698644c0');
 			//ADD Contract address here//');
 	
