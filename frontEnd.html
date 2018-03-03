@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sidebar 1</title>
+  <meta charset="utf-8">
+  
+	<style>
+.leftside {
+	position: absolute;
+	background-color: #eee;
+	font-family: 'Roboto', sans-serif;
+	left: 5%;
+	top: 5%;
+	padding:10px;
+	height: 600px;
+	width: 200px;
+	
+}
+.rightside {
+	position: absolute;
+	background-color: #eee;
+	font-family: 'Roboto', sans-serif;
+	right: 5%;
+	top: 5%;
+	padding:10px;
+	height: 600px;
+	width: 200px;
+	
+}
+
+
+.pic {
+    //border: 3px solid black;
+	position:absolute;
+	margin: auto;
+	left: 310px;
+	top: 5%;
+}
+	</style>
+</head>
+<body>
+	
+
+
+<div class="leftside" >
+	<div style="border-bottom: 1px solid  ">
+		<table>
+		<tr><td><strong>Regulator</strong></td><td></td></tr>
+		<tr><td><div>Credits:</div></td><td></td></tr>
+			 </table>
+		<br>
+   </div>
+	<br>
+     <div style="border-bottom: 1px solid  ">
+		<table><strong>Smart Contract</strong>
+			<tr><td><div>Cheap price: </div></td><td></td></tr>
+		<tr><td><div>Expensive price: </div></td><td></td></tr>
+		<tr><td><div>Credits in circulation: </div></td><td></td></tr>
+		<tr><td><div>Return price: </div></td><td></td></tr>
+		 </table>
+		 <br>
+   </div>
+	<br>
+	<div style="border-bottom: 1px solid  ">
+		<table>
+		<tr><td><strong>Company 1</strong></td></tr>
+		<tr><td><div>Allowed: </div></td></tr>
+		<tr><td><div>Used:</div></td></tr>
+		<tr><td><div>Credits:</div></td></tr>
+			 </table>
+		<br>
+   </div>
+	<br>
+	<div  style="border-bottom: 1px solid  ">
+		<table>
+		<tr><td><strong>Company 2</strong></td><td></td></tr>
+		<tr><td><div>Allowed: </div></td><td>100</td></tr>
+			<tr><td><div>Used:</div></td></tr>
+		<tr><td><div>Credits:</div></td><td></td></tr>
+			 </table>
+		<br>
+		
+   </div>
+	<br>
+	<div >
+		<table>
+		<tr><td><strong>Renewable Energy</strong></td><td></td></tr>
+		<tr><td><div>Money: </div></td><td></td></tr>
+		<tr><td><div>Credits: </div></td><td></td></tr>
+			 </table>
+		<br>
+   </div>
+	<br>
+	
+
+</div>
+	
+	
+	<picture class="pic"> 
+   <img src="Background.png" alt="Model">
+   </picture>
+	
+	
+<div class="rightside" >
+	
+	<div style="border-bottom: 1px solid  "><strong>Regulator</strong>
+	<br><br>
+		
+		
+		
+		<label for="setCheapPrice" >Set Cheap Price:</label>
+        <input style="width: 150px" id="setCheapPrice" placeholder="amount" type="number">
+		<button type="buttonCheap">Go</button>
+		<br><br>
+		
+		<label for="burnCredits" >Burn Credits</label>
+        <input style="width: 150px" id="burnCredits" type="number" placeholder="amount">
+		<button type="burnCredits">Go</button>
+		<br><br>
+		
+		<label for="transferCredits" >Transfer Credits</label>
+		<input style="width: 150px" id="addressTransferCredits" type="text" placeholder="address">
+        <input style="width: 150px" id="amountTransferCredits" type="number"
+			   placeholder="amount">
+		<button type="transferCredits">Go</button>
+		<br><br>
+		
+		
+	</div>
+	<br>
+	<div style="border-bottom: 1px solid  "><strong>Companies</strong>
+	<br><br>
+		<label for="buyCheapCredits" >Buy Cheap Credits</label>
+        <input style="width: 150px" id="buyCheapCredits" type="number" placeholder="amount">
+		<button type="buyCheapCredits">Go</button>
+		<br><br>
+		
+		<label for="buyExpensiveCredits" >Buy Expensive Credits</label>
+        <input style="width: 150px" id="buyExpensiveCredits" type="number" placeholder="amount">
+		<button type="buyExpensiveCredits">Go</button>
+		<br><br>
+		
+		<label for="transferCredits" >Transfer Credits</label>
+		<input style="width: 150px" id="addressTransferCredits" type="text" placeholder="address">
+        <input style="width: 150px" id="amountTransferCredits" type="number"
+			   placeholder="amount">
+		<button type="transferCredits">Go</button>
+		<br><br>
+		
+	</div>
+	
+	<br>
+	<div id="transferCredits" type="button"><strong >Renewable Energy</strong>
+	<br><br>
+	
+		<label for="returnCredits" >Return Credits</label>
+        <input style="width: 150px" id="returnCredits" type="number" placeholder="amount">
+		<button type="returnCredits">Go</button>
+		<br><br>
+		</div>
+	</div>
+	
+  
+	
+</body>
+</html>
