@@ -81,10 +81,9 @@ contract ETS {
 
     // should we check that they only buy if used > allowance?
     function buyCredits() payable public {
-        // TODO: Is there a better way to check for presence in mapping?
         require(keccak256(firms[msg.sender].name) != 0);
 
-        if(msg.value <= (firms[msg.sender].allowance-firms[msg.sender].used)*cheapPrice){
+        if (msg.value <= (firms[msg.sender].allowance - firms[msg.sender].used) * cheapPrice) {
 
             uint creditsBoughtCheap = msg.value / cheapPrice;
 
@@ -94,8 +93,7 @@ contract ETS {
             returnPrice = this.balance / circulation;
 
             CheapCreditsBought(msg.sender, creditsBoughtCheap);
-            return;
-        }else{
+        } else {
             uint input = msg.value;
             input -= (firms[msg.sender].allowance-firms[msg.sender].used)*cheapPrice;
             uint maxCheap = firms[msg.sender].allowance-firms[msg.sender].used;
@@ -113,20 +111,6 @@ contract ETS {
             ExpensiveCreditsBought(msg.sender, creditsBoughtExp+maxCheap);
         }
     }
-    /*
-       function buyExpensiveCredits() payable public {
-// TODO: Is there a better way to check for presence in mapping?
-require(keccak256(firms[msg.sender].name) != 0);
-
-    // require(msg.value <=(firms[msg.sender].allowance-firms[msg.sender].used)*expensivePrice);
-
-    uint creditsBought = msg.value / expensivePrice;
-
-    firms[msg.sender].balance += creditsBought;
-    firms[msg.sender].used += creditsBought;
-
-    ExpensiveCreditsBought(msg.sender, creditsBought);
-}*/
 
     // Testing function.
     function defaultFirm() public {
