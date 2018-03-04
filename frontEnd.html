@@ -9,7 +9,7 @@
 	position: absolute;
 	background-color: #eee;
 	font-family: 'Roboto', sans-serif;
-	left: 5%;
+	left: 2%;
 	top: 5%;
 	padding:10px;
 	height: 600px;
@@ -20,7 +20,7 @@
 	position: absolute;
 	background-color: #eee;
 	font-family: 'Roboto', sans-serif;
-	right: 5%;
+	right: 2%;
 	top: 5%;
 	padding:10px;
 	height: 600px;
@@ -32,50 +32,52 @@
 .pic {
     //border: 3px solid black;
 	position:absolute;
-	margin: auto;
-	left: 310px;
-	top: 5%;
+	left: 290px;
+	width: 890px;
+	height: auto;
+	top: 20%;
 }
 	</style>
 </head>
 <body>
 	
 
+
 <div class="leftside" >
 	<div style="border-bottom: 1px solid  ">
 		<table>
-		<tr><td><strong>Regulator</strong></td><td></td></tr>
-		<tr><td><div>Credits:</div></td><td id="regCred"></td ></tr>
+		<tr><td><strong style="font-size: 20px">Regulator</strong></td><td></td></tr>
+		<tr><td><div>Balance Credits:</div></td><td id="regCredits"></td ></tr>
 			 </table>
 		<br>
    </div>
 	<br>
      <div style="border-bottom: 1px solid  ">
-		<table><strong>Smart Contract</strong>
-			<tr><td><div>Cheap price: </div></td><td id="cheap"></td></tr>
-		<tr><td><div>Expensive price: </div></td><td id="exp"></td></tr>
-		<tr><td><div>Credits in circulation: </div></td><td id="circulation"></td></tr>
-		<tr><td><div>Return price: </div></td><td id="returnPrice"></td></tr>
+		<table><strong style="font-size: 20px">Smart Contract</strong>
+			<tr><td><div>Cheap Price: </div></td><td id="cheap"></td></tr>
+		<tr><td><div>Expensive Price: </div></td><td id="exp"></td></tr>
+		<tr><td><div>Circulation Credits: </div></td><td id="circulation"></td></tr>
+		<tr><td><div>Return Price: </div></td><td id="returnPrice"></td></tr>
 		 </table>
 		 <br>
    </div>
 	<br>
 	<div style="border-bottom: 1px solid  ">
 		<table>
-		<tr><td><strong>Company 1</strong></td></tr>
+		<tr><td><strong style="font-size: 20px">Company 1</strong></td></tr>
 		<tr><td><div>Allowed: </div></td><td id="allowed1"></td></tr>
 		<tr><td><div>Used:</div></td><td id="used1"></td></tr>
-		<tr><td><div>Credits:</div></td><td id="credits1"></td></tr>
+		<tr><td><div>Balance Credits:</div></td><td id="credits1"></td></tr>
 			 </table>
 		<br>
    </div>
 	<br>
 	<div  style="border-bottom: 1px solid  ">
 		<table>
-		<tr><td><strong>Company 2</strong></td><td></td></tr>
+		<tr><td><strong style="font-size: 20px">Company 2</strong></td><td></td></tr>
 		<tr><td><div>Allowed: </div></td><td id="allowed2"></td></tr>
 			<tr><td><div>Used:</div></td><td id="used2"></td></tr>
-		<tr><td><div>Credits:</div></td><td id="credits2"></td></tr>
+		<tr><td><div>Balance Credits:</div></td><td id="credits2"></td></tr>
 			 </table>
 		<br>
 		
@@ -83,9 +85,9 @@
 	<br>
 	<div >
 		<table>
-		<tr><td><strong>Renewable Energy</strong></td><td></td></tr>
-		<tr><td><div>Money: </div></td><td id="moneyRen"></td></tr>
-		<tr><td><div>Credits: </div></td><td id="creditsRen"></td></tr>
+		<tr><td><strong style="font-size: 20px">Renewable Energy</strong></td><td></td></tr>
+		<tr><td><div> </div></td><td id="moneyRen"></td></tr>
+		<tr><td><div>Balance Credits: </div></td><td id="creditsRen"></td></tr>
 			 </table>
 		<br>
    </div>
@@ -94,65 +96,57 @@
 
 </div>
 	
-	<picture class="pic"> 
-   <img src="Background.png" alt="Model">
+	
+	<picture > 
+   <img class="pic" src="Background.png" alt="Model">
    </picture>
 	
 	
 <div class="rightside" >
 	
-	<div style="border-bottom: 1px solid  "><strong>Regulator</strong>
+	<div style="border-bottom: 1px solid  "><strong style="font-size: 20px">Regulator</strong>
 	<br><br>
 		
 		
 		
-		<label for="setCheapPrice" >Set Cheap Price:</label>
-        <input style="width: 150px" id="setCheapPrice" placeholder="amount" type="number">
-		<button type="buttonCheap">Go</button>
-		<br><br>
-		
 		<label for="burnCredits" >Burn Credits</label>
-        <input style="width: 150px" id="burnCredits" type="number" placeholder="amount">
+        <input style="width: 150px" id="burnCredits" type="number" placeholder="Amount Credits">
 		<button type="burnCredits">Go</button>
 		<br><br>
 		
-		<label for="transferCredits" >Transfer Credits</label>
-		<input style="width: 150px" id="addressTransferCredits" type="text" placeholder="address">
-        <input style="width: 150px" id="amountTransferCredits" type="number"
-			   placeholder="amount">
-		<button type="transferCredits">Go</button>
+		<label for="buyGreen" >Buy Green Energy</label>
+		<input style="width: 150px" id="addressBuyGreenCredits" type="text" placeholder="Address Green Energy">
+        <input style="width: 150px" id="amountBuyGreenCredits" type="number"
+			   placeholder="Amount Credits">
+		<button type="buyGreen">Go</button>
 		<br><br>
 		
 		
 	</div>
 	<br>
-	<div style="border-bottom: 1px solid  "><strong>Companies</strong>
+	<div style="border-bottom: 1px solid  "><strong style="font-size: 20px">Companies</strong>
 	<br><br>
-		<label for="buyCheapCredits" >Buy Cheap Credits</label>
-        <input style="width: 150px" id="buyCheapCredits" type="number" placeholder="amount">
-		<button type="buyCheapCredits">Go</button>
+		<label for="buyCredits" >Buy Credits</label>
+        <input style="width: 150px" id="buyCredits" type="number" placeholder="Value Ether">
+		<button type="buyCredits">Go</button>
 		<br><br>
 		
-		<label for="buyExpensiveCredits" >Buy Expensive Credits</label>
-        <input style="width: 150px" id="buyExpensiveCredits" type="number" placeholder="amount">
-		<button type="buyExpensiveCredits">Go</button>
-		<br><br>
 		
-		<label for="transferCredits" >Transfer Credits</label>
-		<input style="width: 150px" id="addressTransferCredits" type="text" placeholder="address">
+		<label for="transferCredits" >Trade Credits</label>
+		<input style="width: 150px" id="addressTransferCredits" type="text" placeholder="Address Company">
         <input style="width: 150px" id="amountTransferCredits" type="number"
-			   placeholder="amount">
+			   placeholder="Amount Credits">
 		<button type="transferCredits">Go</button>
 		<br><br>
 		
 	</div>
 	
 	<br>
-	<div id="transferCredits" type="button"><strong >Renewable Energy</strong>
-	<br><br>
+	<div id="transferCredits" type="button"><strong style="font-size: 20px">Renewable Energy</strong>
 	
-		<label for="returnCredits" >Return Credits</label>
-        <input style="width: 150px" id="returnCredits" type="number" placeholder="amount">
+	
+		<label for="returnCredits" >Return and Burn Credits</label>
+        <input style="width: 150px" id="returnCredits" type="number" placeholder="Amount Credits">
 		<button type="returnCredits">Go</button>
 		<br><br>
 		</div>
