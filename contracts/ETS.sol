@@ -1,17 +1,19 @@
 pragma solidity ^0.4.20;
 
 contract ETS {
-    
+
     struct Firm {
         string name;
         uint allowance;
         uint balance;
         uint used;
     }
+
     struct GreenEnergy {
         string name;
         uint balance;
     }
+
     struct PrivatePerson {
         string name;
         uint allowance;
@@ -22,7 +24,7 @@ contract ETS {
     mapping (address => Firm) public firms;
     mapping (address => GreenEnergy) public greens;
     mapping (address => PrivatePerson) public privats;
-    
+
     address public creator;
 
     uint public expensivePrice = 1000000000000000000;
@@ -37,22 +39,23 @@ contract ETS {
         require(creator == msg.sender);
         firms[a] = Firm(name, allowance, 0, 0);
     }
+
     function registerPrivate(address a, string name, uint allowance) public {
         require(creator == msg.sender);
         privats[a] = PrivatePerson(name, allowance, 0, 0);
     }
-    
-     function registerRenewable(address a, string name) public {
+
+    function registerRenewable(address a, string name) public {
         require(creator == msg.sender);
         greens[a] = GreenEnergy(name, 0);
     }
 
     function getMyBalance()view public returns (uint) { return this.balance; }
-    
+
     function burnCredits(uint amount)public{
         require(keccak256(firms[msg.sender].name) != 0);
         require(firms[msg.sender].balance>=amount);
-        
+
         firms[msg.sender].balance -= amount;
         circulation -= amount;
         returnPrice = this.balance / circulation;
@@ -60,13 +63,13 @@ contract ETS {
     function returnCredits(uint amount)public{
         require(keccak256(greens[msg.sender].name) != 0);
         require(greens[msg.sender].balance>=amount);
-        
-        greens[msg.sender].balance -=amount;
+
+        greens[msg.sender].balance -= amount;
         msg.sender.transfer(amount*returnPrice);
         circulation -= amount;
         returnPrice = this.balance / circulation;
     }
-    
+
     function ETS() public {
         creator = msg.sender;
     }
@@ -80,18 +83,18 @@ contract ETS {
     function buyCredits() payable public {
         // TODO: Is there a better way to check for presence in mapping?
         require(keccak256(firms[msg.sender].name) != 0);
-        
+
         if(msg.value <= (firms[msg.sender].allowance-firms[msg.sender].used)*cheapPrice){
 
-        uint creditsBoughtCheap = msg.value / cheapPrice;
-        
-        firms[msg.sender].balance += creditsBoughtCheap;
-        firms[msg.sender].used += creditsBoughtCheap;
-        circulation += creditsBoughtCheap;
-        returnPrice = this.balance / circulation;
+            uint creditsBoughtCheap = msg.value / cheapPrice;
 
-        CheapCreditsBought(msg.sender, creditsBoughtCheap);
-        return;
+            firms[msg.sender].balance += creditsBoughtCheap;
+            firms[msg.sender].used += creditsBoughtCheap;
+            circulation += creditsBoughtCheap;
+            returnPrice = this.balance / circulation;
+
+            CheapCreditsBought(msg.sender, creditsBoughtCheap);
+            return;
         }else{
             uint input = msg.value;
             input -= (firms[msg.sender].allowance-firms[msg.sender].used)*cheapPrice;
@@ -99,7 +102,7 @@ contract ETS {
             firms[msg.sender].balance += maxCheap;
             firms[msg.sender].used += maxCheap;
             circulation += maxCheap;
-            
+
             uint creditsBoughtExp = input / expensivePrice;
 
             firms[msg.sender].balance += creditsBoughtExp;
@@ -110,20 +113,20 @@ contract ETS {
             ExpensiveCreditsBought(msg.sender, creditsBoughtExp+maxCheap);
         }
     }
-/*
-    function buyExpensiveCredits() payable public {
-        // TODO: Is there a better way to check for presence in mapping?
-        require(keccak256(firms[msg.sender].name) != 0);
+    /*
+       function buyExpensiveCredits() payable public {
+// TODO: Is there a better way to check for presence in mapping?
+require(keccak256(firms[msg.sender].name) != 0);
 
-        // require(msg.value <=(firms[msg.sender].allowance-firms[msg.sender].used)*expensivePrice);
+    // require(msg.value <=(firms[msg.sender].allowance-firms[msg.sender].used)*expensivePrice);
 
-        uint creditsBought = msg.value / expensivePrice;
+    uint creditsBought = msg.value / expensivePrice;
 
-        firms[msg.sender].balance += creditsBought;
-        firms[msg.sender].used += creditsBought;
+    firms[msg.sender].balance += creditsBought;
+    firms[msg.sender].used += creditsBought;
 
-        ExpensiveCreditsBought(msg.sender, creditsBought);
-    }*/
+    ExpensiveCreditsBought(msg.sender, creditsBought);
+}*/
 
     // Testing function.
     function defaultFirm() public {
@@ -137,15 +140,14 @@ contract ETS {
         firms[firm].balance += amount;
     }
     function buyRenewable(address renew, uint amount) public {
-        require(firms[msg.sender].balance >= amount ||
-        privats[msg.sender].balance >= amount);
-        if(firms[msg.sender].balance >= amount){
-             firms[msg.sender].balance -= amount;
-        greens[renew].balance += amount;
-            }else{
-                privats[msg.sender].balance -= amount;
-                greens[renew].balance += amount;
-            }
-           
+        require(firms[msg.sender].balance >= amount || privats[msg.sender].balance >= amount);
+        if (firms[msg.sender].balance >= amount) {
+            firms[msg.sender].balance -= amount;
+            greens[renew].balance += amount;
+        } else {
+            privats[msg.sender].balance -= amount;
+            greens[renew].balance += amount;
+        }
+
     }
 }
