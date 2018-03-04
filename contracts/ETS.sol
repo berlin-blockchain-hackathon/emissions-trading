@@ -27,8 +27,8 @@ contract ETS {
 
     address public creator;
 
-    uint public expensivePrice = 5 ether;
-    uint public cheapPrice = 2 ether;
+    uint public expensivePrice = 0.3 ether;
+    uint public cheapPrice = 0.1 ether;
     uint public circulation = 1;
     uint public returnPrice = this.balance / circulation;
 
