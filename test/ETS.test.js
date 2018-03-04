@@ -9,7 +9,7 @@ const web3 = new Web3(ganache.provider());
 let accounts;
 let inbox;
 
-const defaultGas = '1000000';
+const defaultGas = '5000000';
 
 beforeEach(async () => {
   accounts = await web3.eth.getAccounts();
@@ -46,44 +46,46 @@ describe('ETS', () => {
   //   );
   // });
 
-  it('buys cheap credits', async () => {
-    await ets.methods.registerFirm(accounts[1], "bar", 10).send({
-      from: accounts[0],
-      gas: defaultGas
+  describe('buying credits', () => {
+    it('buys credits', async () => {
+      await ets.methods.registerFirm(accounts[1], "bar", 10).send({
+        from: accounts[0],
+        gas: defaultGas
+      });
+
+      await ets.methods.buyCredits().send({
+        from: accounts[1],
+        gas: defaultGas,
+        value: web3.utils.toWei('10', 'ether')
+      });
+
+      let firm = await ets.methods.firms(accounts[1]).call();
+      let balance = firm['2'];
+      let used = firm['3'];
+      // because the cheap price is 2, so 10 / 2
+      assert.equal(balance, 5);
+      assert.equal(used, 5);
     });
 
-    await ets.methods.buyCheapCredits().send({
-      from: accounts[1],
-      gas: defaultGas,
-      value: 10
+    it('buys expensive credits', async () => {
+      await ets.methods.registerFirm(accounts[1], "bar", 5).send({
+        from: accounts[0],
+        gas: defaultGas
+      });
+
+      await ets.methods.buyCredits().send({
+        from: accounts[1],
+        gas: defaultGas,
+        value: web3.utils.toWei('20', 'ether')
+      });
+
+      let firm = await ets.methods.firms(accounts[1]).call();
+      let balance = firm['2'];
+      let used = firm['3'];
+      // because the cheap price is 2, so 10 / 2
+      assert.equal(balance, 6);
+      assert.equal(used, 6);
     });
-
-    let firm = await ets.methods.firms(accounts[1]).call();
-    let balance = firm['2'];
-    let used = firm['3'];
-    // because the cheap price is 2, so 10 / 2
-    assert.equal(balance, 5);
-    assert.equal(used, 5);
-  });
-
-  it('buys expensive credits', async () => {
-    await ets.methods.registerFirm(accounts[1], "bar", 10).send({
-      from: accounts[0],
-      gas: defaultGas
-    });
-
-    await ets.methods.buyExpensiveCredits().send({
-      from: accounts[1],
-      gas: defaultGas,
-      value: 10
-    });
-
-    let firm = await ets.methods.firms(accounts[1]).call();
-    let balance = firm['2'];
-    let used = firm['3'];
-    // because the expensive price is 10, so 10 / 10
-    assert.equal(balance, 1);
-    assert.equal(used, 1);
   });
 
   // it('transfers credits', async () => {
